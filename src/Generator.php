@@ -58,15 +58,30 @@ class Generator
         }
     }
 
+    // public function generateApi(string $uri, array $data)
+    // {
+    //     $path = Helper::resolvePath($uri);
+
+    //     $this->makeDirectoriesIfNotExists(dirname($path));
+
+    //     $filePath = $this->getPath($path);
+    //     file_put_contents($filePath, json_encode($data));
+
+    //     echo "+ {$uri}" . PHP_EOL;
+    // }
+
     public function generateApi(string $uri, array $data)
     {
         $path = Helper::resolvePath($uri);
-
+    
         $this->makeDirectoriesIfNotExists(dirname($path));
-
+    
         $filePath = $this->getPath($path);
-        file_put_contents($filePath, json_encode($data));
-
+    
+        $wrappedData = ['data' => $data];
+    
+        file_put_contents($filePath, json_encode($wrappedData));
+    
         echo "+ {$uri}" . PHP_EOL;
     }
 
